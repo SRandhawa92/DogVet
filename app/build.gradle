@@ -41,8 +41,11 @@ android {
     }
 
     defaultConfig {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
         buildConfigField("String", "BASE_URL", "\"https://api.openai.com/v1/\"")
-        buildConfigField("String", "OPEN_AI_TOKEN", "\"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\"")
+        buildConfigField("String", "OPEN_AI_TOKEN", properties.getProperty("OPEN_API_KEY"))
     }
 }
 
